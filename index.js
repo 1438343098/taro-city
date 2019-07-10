@@ -22,19 +22,19 @@ let indexsheng = '340000'
 // 当前市
 let indexshi = '340100'
 
-export default class PagePicker extends Component {
+class PagePicker extends Component {
     
     state = {
       selector: [shen,shi,qu],
-      selectorChecked: ['安徽'+this.props.Division,"合肥"+this.props.Division,"瑶海"],
+      selectorChecked: '安徽 - '+"合肥 - "+"瑶海",
     }
     
     onChange = e => {
 
         this.setState({
-          selectorChecked: [this.state.selector[0][e.detail.value[0]]+this.props.Division,this.state.selector[1][e.detail.value[1]]+this.props.Division,this.state.selector[2][e.detail.value[2]]]
+          selectorChecked: this.state.selector[0][e.detail.value[0]]+this.props.Division+this.state.selector[1][e.detail.value[1]]+this.props.Division+this.state.selector[2][e.detail.value[2]]
         },()=>{
-            this.props.getCity(this.state.selectorChecked);
+            this.props.getCity(this.state.selectorChecked.toString());
         })
       }
       onColumnChange = e => {
@@ -85,17 +85,18 @@ export default class PagePicker extends Component {
         }
       }
       componentDidMount(){
-        this.props.getCity(this.state.selectorChecked);
+        this.props.getCity(this.state.selectorChecked.toString());
       }
   render () {
       return (
           <View>
             <Picker mode='multiSelector'  range={this.state.selector} onColumnChange={this.onColumnChange} onChange={this.onChange}>
                 <View className='pickerCity'>
-                  <Text>地址</Text> <Text>{this.state.selectorChecked}</Text>
+                  <Text>地址</Text> <Text>{this.state.selectorChecked.toString()}</Text>
                 </View>
               </Picker>
           </View>
       )
     }
 }
+export default PagePicker
