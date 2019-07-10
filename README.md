@@ -12,7 +12,8 @@ import Citypicker from "../../components/cityPicker"
 使用 
 <Citypicker Division=" - " getCity={this.cityEnd.bind(this)}></Citypicker>
 
-Division  是这两个地址之间分割的方式
+
+Division  是这两个地址之间分割的方式  初始为“ - ”  这个参数是必须
 getCity  进入时返回一次数据 确定时放回一次数据
 
 第一个参数就是返回的地址 带有你的分隔符
